@@ -1,0 +1,32 @@
+{
+  "$schema": "https://marketplace.umbraco.com/umbraco-marketplace-schema.json",
+  "Title": "OC Automate LinkedIn",
+  "Description": "LinkedIn integration for Umbraco Automate. Post content to LinkedIn as part of your automation workflows.",
+  "Category": "Editor Tools",
+  "AuthorDetails": {
+    "Name": "Owain Williams",
+    "Url": "https://owain.codes",
+    "ImageUrl": ""
+  },
+  "LicenseTypes": [
+    "MIT"
+  ],
+  "NuGetPackageId": "OC.Automate.LinkedIn",
+  "Tags": [
+    "automate",
+    "linkedin",
+    "social media"
+  ],
+  "RelatedPackages": [
+    {
+      "Name": "OC.Automate.Bluesky",
+      "PackageId": "OC.Automate.Bluesky"
+    },
+    {
+      "Name": "OC.Automate.Mastodon",
+      "PackageId": "OC.Automate.Mastodon"
+    }
+  ],
+  "OpenCollective": "",
+  "OpenForContributions": true
+}
