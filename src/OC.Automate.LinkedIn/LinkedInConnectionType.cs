@@ -7,15 +7,18 @@ namespace OC.Automate.LinkedIn;
 public class LinkedInConnectionType : ConnectionTypeBase<LinkedInConnectionSettings>
 {
     private readonly LinkedInTokenService _tokenService;
+    private readonly LinkedInTokenStore _tokenStore;
     private readonly IOptionsMonitor<LinkedInSettings> _linkedInSettings;
 
     public LinkedInConnectionType(
         ConnectionTypeInfrastructure infrastructure,
         LinkedInTokenService tokenService,
+        LinkedInTokenStore tokenStore,
         IOptionsMonitor<LinkedInSettings> linkedInSettings)
         : base(infrastructure)
     {
         _tokenService = tokenService;
+        _tokenStore = tokenStore;
         _linkedInSettings = linkedInSettings;
     }
 
@@ -39,11 +42,6 @@ public class LinkedInConnectionType : ConnectionTypeBase<LinkedInConnectionSetti
             return ConnectionValidationResult.Failure("Connection Name is required.");
         }
 
-        if (string.IsNullOrWhiteSpace(connectionSettings.RefreshToken))
-        {
-            return ConnectionValidationResult.Failure("Refresh Token is required.");
-        }
-
         var linkedInSettings = _linkedInSettings.CurrentValue;
 
         if (string.IsNullOrWhiteSpace(linkedInSettings.ClientId) ||
@@ -53,11 +51,17 @@ public class LinkedInConnectionType : ConnectionTypeBase<LinkedInConnectionSetti
                 "LinkedIn ClientId and ClientSecret are required in appsettings.json.");
         }
 
+        if (!_tokenStore.HasTokens(connectionSettings.ConnectionName))
+        {
+            return ConnectionValidationResult.Failure(
+                $"No tokens found for connection '{connectionSettings.ConnectionName}'. " +
+                $"Please authorize first by visiting /umbraco/api/linkedin/authorize?connectionName={Uri.EscapeDataString(connectionSettings.ConnectionName)}");
+        }
+
         try
         {
-            var accessToken = await _tokenService.GetAccessTokenAsync(
+            await _tokenService.GetAccessTokenAsync(
                 connectionSettings.ConnectionName,
-                connectionSettings.RefreshToken,
                 cancellationToken);
 
             return ConnectionValidationResult.Success(

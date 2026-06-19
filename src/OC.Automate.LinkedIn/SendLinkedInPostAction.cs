@@ -44,10 +44,10 @@ public class SendLinkedInPostAction : ActionBase<LinkedInPostSettings>
                 StepRunErrorCategory.ConfigurationError);
         }
 
-        if (string.IsNullOrWhiteSpace(connectionSettings.RefreshToken))
+        if (string.IsNullOrWhiteSpace(connectionSettings.ConnectionName))
         {
             return ActionResult.Failed(
-                new InvalidOperationException("Refresh Token is required."),
+                new InvalidOperationException("Connection Name is required."),
                 StepRunErrorCategory.ConfigurationError);
         }
 
@@ -56,10 +56,9 @@ public class SendLinkedInPostAction : ActionBase<LinkedInPostSettings>
         {
             accessToken = await _tokenService.GetAccessTokenAsync(
                 connectionSettings.ConnectionName,
-                connectionSettings.RefreshToken,
                 cancellationToken);
         }
-        catch (HttpRequestException ex)
+        catch (Exception ex) when (ex is HttpRequestException or InvalidOperationException)
         {
             _logger.LogError(ex, "Failed to obtain LinkedIn access token");
             return ActionResult.Failed(ex, StepRunErrorCategory.ConfigurationError);

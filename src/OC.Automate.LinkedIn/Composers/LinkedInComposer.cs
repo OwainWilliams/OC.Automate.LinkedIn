@@ -15,7 +15,7 @@ public class LinkedInComposer : IComposer
         builder.Services.AddOptions<LinkedInSettings>()
             .BindConfiguration("OwainCodes:Automate:LinkedIn");
 
-        builder.Services.AddMemoryCache();
+        builder.Services.AddSingleton<LinkedInTokenStore>();
         builder.Services.AddSingleton<LinkedInTokenService>();
 
         builder.WithCollectionBuilder<ConnectionTypeCollectionBuilder>()

@@ -10,7 +10,7 @@ dotnet add package OC.Automate.LinkedIn
 
 ## Prerequisites
 
-You'll need a LinkedIn App with the right permissions before this package can post on your behalf. Follow these steps:
+You'll need a LinkedIn App before this package can post on your behalf.
 
 ### Step 1: Create a LinkedIn App
 
@@ -31,22 +31,20 @@ You'll need a LinkedIn App with the right permissions before this package can po
 ### Step 3: Get your Client ID and Client Secret
 
 1. On your app page, go to the **Auth** tab.
-2. Copy your **Client ID** and **Client Secret** — you'll need these for your `appsettings.json`.
+2. Copy your **Client ID** and **Client Secret**.
 
-### Step 4: Generate a Refresh Token
+### Step 4: Configure the Redirect URL
 
-1. On your app's **Auth** tab, scroll down to **OAuth 2.0 tools**.
-2. Click **Create token** (or use the LinkedIn Token Generator).
-3. Select the scopes: **w_member_social** (post as yourself) or **w_organization_social** (post as an organization).
-4. Complete the authorization flow — LinkedIn will show you an **access token** and a **refresh token**.
-5. Copy the **refresh token** — this is what you'll paste into the Umbraco backoffice.
-
-> **Note:** Refresh tokens last approximately 365 days. The package automatically uses your refresh token to generate short-lived access tokens behind the scenes — you don't need to manage access tokens yourself.
+1. On your app's **Auth** tab, under **Authorized redirect URLs for your app**, add your callback URL:
+   ```
+   https://your-site.com/umbraco/api/linkedin/callback
+   ```
+2. This must match exactly what you configure in `appsettings.json` (see below).
 
 ### Step 5: Find your Author URN
 
 **To post as yourself (person):**
-1. Use the LinkedIn Token Generator or call the API: `GET https://api.linkedin.com/v2/userinfo` with your access token.
+1. After authorizing (Step 7 below), call the API: `GET https://api.linkedin.com/v2/userinfo` with your access token.
 2. The response contains your `sub` field — your Author URN is `urn:li:person:{sub}`.
 
 **To post as an organization:**
@@ -64,7 +62,8 @@ Add your LinkedIn app credentials to `appsettings.json`:
     "Automate": {
       "LinkedIn": {
         "ClientId": "your-client-id",
-        "ClientSecret": "your-client-secret"
+        "ClientSecret": "your-client-secret",
+        "AuthorizeRedirectUri": "https://your-site.com/umbraco/api/linkedin/callback"
       }
     }
   }
@@ -75,15 +74,27 @@ Add your LinkedIn app credentials to `appsettings.json`:
 |---------|-----------------|
 | `ClientId` | App → Auth tab → Client ID |
 | `ClientSecret` | App → Auth tab → Client Secret |
-
-That's all you need in config — refresh tokens are managed in the Umbraco backoffice, not in appsettings.
+| `AuthorizeRedirectUri` | Must match the redirect URL you added in Step 4 |
 
 ## Usage
 
-1. In the Umbraco backoffice, go to **Automate** and create a new **LinkedIn** connection.
-2. Enter your **Author URN** (from Step 5 above), a **Connection Name**, and your **Refresh Token** (from Step 4).
-3. Click **Validate** to confirm the connection is working.
-4. Create an automation action using **Send LinkedIn Post**.
-5. Configure the post content (supports `${binding}` syntax for dynamic values like content names, URLs, etc.).
+### Step 6: Create a LinkedIn Connection
 
-The package automatically handles access token refresh — no manual token rotation needed.
+1. In the Umbraco backoffice, go to **Automate** and create a new **LinkedIn** connection.
+2. Enter your **Author URN** (from Step 5) and a **Connection Name** (e.g. `my-linkedin`).
+
+### Step 7: Authorize with LinkedIn
+
+1. Navigate to: `https://your-site.com/umbraco/api/linkedin/authorize?connectionName=my-linkedin`
+   (Replace `my-linkedin` with the connection name you chose in Step 6)
+2. You'll be redirected to LinkedIn to authorize the app.
+3. After approving, you'll see a **"LinkedIn Connected!"** confirmation page.
+4. Tokens are stored automatically — no manual token management needed.
+
+### Step 8: Validate and Use
+
+1. Back in the Umbraco backoffice, click **Validate** on your LinkedIn connection to confirm it's working.
+2. Create an automation action using **Send LinkedIn Post**.
+3. Configure the post content (supports `${binding}` syntax for dynamic values like content names, URLs, etc.).
+
+The package automatically refreshes access tokens when they expire — no manual intervention required.

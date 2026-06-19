@@ -11,13 +11,7 @@ public class LinkedInConnectionSettings
 
     [Field(
         Label = "Connection Name",
-        Description = "A friendly name for this connection (used internally for token caching)",
+        Description = "A unique name for this connection (used to link authorization and token storage)",
         SortOrder = 1)]
     public string ConnectionName { get; set; } = string.Empty;
-
-    [Field(
-        Label = "Refresh Token",
-        Description = "Your LinkedIn OAuth2 refresh token. Get this from the LinkedIn Developer Portal (see README for steps).",
-        SortOrder = 2)]
-    public string RefreshToken { get; set; } = string.Empty;
 }
