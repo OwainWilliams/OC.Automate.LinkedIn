@@ -2,7 +2,6 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using Umbraco.Automate.Core.Actions;
 
 namespace OC.Automate.LinkedIn;
@@ -12,18 +11,18 @@ public class SendLinkedInPostAction : ActionBase<LinkedInPostSettings>
 {
     private readonly IHttpClientFactory _httpClientFactory;
     private readonly ILogger<SendLinkedInPostAction> _logger;
-    private readonly IOptionsMonitor<LinkedInSettings> _linkedInSettings;
+    private readonly LinkedInTokenService _tokenService;
 
     public SendLinkedInPostAction(
         ActionInfrastructure infrastructure,
         IHttpClientFactory httpClientFactory,
         ILogger<SendLinkedInPostAction> logger,
-        IOptionsMonitor<LinkedInSettings> linkedInSettings)
+        LinkedInTokenService tokenService)
         : base(infrastructure)
     {
         _httpClientFactory = httpClientFactory;
         _logger = logger;
-        _linkedInSettings = linkedInSettings;
+        _tokenService = tokenService;
     }
 
     public override async Task<ActionResult> ExecuteAsync(
@@ -45,22 +44,25 @@ public class SendLinkedInPostAction : ActionBase<LinkedInPostSettings>
                 StepRunErrorCategory.ConfigurationError);
         }
 
-        if (string.IsNullOrWhiteSpace(connectionSettings.ConnectionName))
+        if (string.IsNullOrWhiteSpace(connectionSettings.RefreshToken))
         {
             return ActionResult.Failed(
-                new InvalidOperationException("Connection Name is required."),
+                new InvalidOperationException("Refresh Token is required."),
                 StepRunErrorCategory.ConfigurationError);
         }
 
-        var linkedInSettings = _linkedInSettings.CurrentValue;
-
-        if (!linkedInSettings.AccessTokens.TryGetValue(connectionSettings.ConnectionName, out var accessToken)
-            || string.IsNullOrWhiteSpace(accessToken))
+        string accessToken;
+        try
         {
-            return ActionResult.Failed(
-                new InvalidOperationException(
-                    $"No access token found for connection name '{connectionSettings.ConnectionName}'."),
-                StepRunErrorCategory.ConfigurationError);
+            accessToken = await _tokenService.GetAccessTokenAsync(
+                connectionSettings.ConnectionName,
+                connectionSettings.RefreshToken,
+                cancellationToken);
+        }
+        catch (HttpRequestException ex)
+        {
+            _logger.LogError(ex, "Failed to obtain LinkedIn access token");
+            return ActionResult.Failed(ex, StepRunErrorCategory.ConfigurationError);
         }
 
         var actionSettings = context.GetSettings<LinkedInPostSettings>();

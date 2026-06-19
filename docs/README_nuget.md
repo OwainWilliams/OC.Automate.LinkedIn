@@ -33,17 +33,15 @@ You'll need a LinkedIn App with the right permissions before this package can po
 1. On your app page, go to the **Auth** tab.
 2. Copy your **Client ID** and **Client Secret** — you'll need these for your `appsettings.json`.
 
-### Step 4: Generate an Access Token
-
-The simplest way to get a token for testing:
+### Step 4: Generate a Refresh Token
 
 1. On your app's **Auth** tab, scroll down to **OAuth 2.0 tools**.
 2. Click **Create token** (or use the LinkedIn Token Generator).
 3. Select the scopes: **w_member_social** (post as yourself) or **w_organization_social** (post as an organization).
-4. Complete the authorization flow — LinkedIn will show you an access token.
-5. Copy the token.
+4. Complete the authorization flow — LinkedIn will show you an **access token** and a **refresh token**.
+5. Copy the **refresh token** — this is what you'll paste into the Umbraco backoffice.
 
-> **Warning:** Access tokens expire (typically after 60 days). For production use, you'll need to implement a token refresh flow outside of this package, or manually rotate tokens when they expire.
+> **Note:** Refresh tokens last approximately 365 days. The package automatically uses your refresh token to generate short-lived access tokens behind the scenes — you don't need to manage access tokens yourself.
 
 ### Step 5: Find your Author URN
 
@@ -58,7 +56,7 @@ The simplest way to get a token for testing:
 
 ## Configuration
 
-Add your LinkedIn credentials to `appsettings.json`:
+Add your LinkedIn app credentials to `appsettings.json`:
 
 ```json
 {
@@ -66,10 +64,7 @@ Add your LinkedIn credentials to `appsettings.json`:
     "Automate": {
       "LinkedIn": {
         "ClientId": "your-client-id",
-        "ClientSecret": "your-client-secret",
-        "AccessTokens": {
-          "my-linkedin": "your-access-token"
-        }
+        "ClientSecret": "your-client-secret"
       }
     }
   }
@@ -80,13 +75,15 @@ Add your LinkedIn credentials to `appsettings.json`:
 |---------|-----------------|
 | `ClientId` | App → Auth tab → Client ID |
 | `ClientSecret` | App → Auth tab → Client Secret |
-| `AccessTokens` key | A name you choose (e.g. `"my-linkedin"`) — you'll enter this same name in the Umbraco connection setup |
-| `AccessTokens` value | The OAuth2 access token from Step 4 |
+
+That's all you need in config — refresh tokens are managed in the Umbraco backoffice, not in appsettings.
 
 ## Usage
 
 1. In the Umbraco backoffice, go to **Automate** and create a new **LinkedIn** connection.
-2. Enter your **Author URN** (from Step 5 above) and **Connection Name** (must match the key you used in `AccessTokens`).
-3. Click **Validate** to confirm the token is working.
+2. Enter your **Author URN** (from Step 5 above), a **Connection Name**, and your **Refresh Token** (from Step 4).
+3. Click **Validate** to confirm the connection is working.
 4. Create an automation action using **Send LinkedIn Post**.
 5. Configure the post content (supports `${binding}` syntax for dynamic values like content names, URLs, etc.).
+
+The package automatically handles access token refresh — no manual token rotation needed.

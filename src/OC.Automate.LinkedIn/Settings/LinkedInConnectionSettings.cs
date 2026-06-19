@@ -11,7 +11,13 @@ public class LinkedInConnectionSettings
 
     [Field(
         Label = "Connection Name",
-        Description = "The key used to look up the access token in appsettings.json under OwainCodes:Automate:LinkedIn:AccessTokens",
+        Description = "A friendly name for this connection (used internally for token caching)",
         SortOrder = 1)]
     public string ConnectionName { get; set; } = string.Empty;
+
+    [Field(
+        Label = "Refresh Token",
+        Description = "Your LinkedIn OAuth2 refresh token. Get this from the LinkedIn Developer Portal (see README for steps).",
+        SortOrder = 2)]
+    public string RefreshToken { get; set; } = string.Empty;
 }
