@@ -21,6 +21,12 @@ public class LinkedInTokenStore
     public string? GetExpiresAt(string connectionName)
         => _keyValueService.GetValue($"{KeyPrefix}:{connectionName}:ExpiresAt");
 
+    public string? GetAuthorUrn(string connectionName)
+        => _keyValueService.GetValue($"{KeyPrefix}:{connectionName}:AuthorUrn");
+
+    public void StoreAuthorUrn(string connectionName, string authorUrn)
+        => _keyValueService.SetValue($"{KeyPrefix}:{connectionName}:AuthorUrn", authorUrn);
+
     public void StoreTokens(string connectionName, string accessToken, string refreshToken, DateTimeOffset expiresAt)
     {
         _keyValueService.SetValue($"{KeyPrefix}:{connectionName}:AccessToken", accessToken);
@@ -29,7 +35,7 @@ public class LinkedInTokenStore
     }
 
     public bool HasTokens(string connectionName)
-        => !string.IsNullOrWhiteSpace(GetRefreshToken(connectionName));
+        => !string.IsNullOrWhiteSpace(GetAccessToken(connectionName));
 
     public bool IsAccessTokenExpired(string connectionName)
     {

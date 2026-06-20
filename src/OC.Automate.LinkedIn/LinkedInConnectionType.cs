@@ -32,11 +32,6 @@ public class LinkedInConnectionType : ConnectionTypeBase<LinkedInConnectionSetti
             return ConnectionValidationResult.Failure("Invalid connection settings.");
         }
 
-        if (string.IsNullOrWhiteSpace(connectionSettings.AuthorUrn))
-        {
-            return ConnectionValidationResult.Failure("Author URN is required.");
-        }
-
         if (string.IsNullOrWhiteSpace(connectionSettings.ConnectionName))
         {
             return ConnectionValidationResult.Failure("Connection Name is required.");
@@ -64,8 +59,10 @@ public class LinkedInConnectionType : ConnectionTypeBase<LinkedInConnectionSetti
                 connectionSettings.ConnectionName,
                 cancellationToken);
 
+            var authorUrn = _tokenStore.GetAuthorUrn(connectionSettings.ConnectionName);
+            var urnInfo = string.IsNullOrWhiteSpace(authorUrn) ? "" : $" ({authorUrn})";
             return ConnectionValidationResult.Success(
-                $"LinkedIn connection validated for {connectionSettings.AuthorUrn}.");
+                $"LinkedIn connection validated{urnInfo}.");
         }
         catch (HttpRequestException ex)
         {

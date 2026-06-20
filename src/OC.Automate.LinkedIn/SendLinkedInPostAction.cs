@@ -12,17 +12,20 @@ public class SendLinkedInPostAction : ActionBase<LinkedInPostSettings>
     private readonly IHttpClientFactory _httpClientFactory;
     private readonly ILogger<SendLinkedInPostAction> _logger;
     private readonly LinkedInTokenService _tokenService;
+    private readonly LinkedInTokenStore _tokenStore;
 
     public SendLinkedInPostAction(
         ActionInfrastructure infrastructure,
         IHttpClientFactory httpClientFactory,
         ILogger<SendLinkedInPostAction> logger,
-        LinkedInTokenService tokenService)
+        LinkedInTokenService tokenService,
+        LinkedInTokenStore tokenStore)
         : base(infrastructure)
     {
         _httpClientFactory = httpClientFactory;
         _logger = logger;
         _tokenService = tokenService;
+        _tokenStore = tokenStore;
     }
 
     public override async Task<ActionResult> ExecuteAsync(
@@ -34,13 +37,6 @@ public class SendLinkedInPostAction : ActionBase<LinkedInPostSettings>
         {
             return ActionResult.Failed(
                 new InvalidOperationException("Invalid connection settings."),
-                StepRunErrorCategory.ConfigurationError);
-        }
-
-        if (string.IsNullOrWhiteSpace(connectionSettings.AuthorUrn))
-        {
-            return ActionResult.Failed(
-                new InvalidOperationException("Author URN is required."),
                 StepRunErrorCategory.ConfigurationError);
         }
 
@@ -84,13 +80,21 @@ public class SendLinkedInPostAction : ActionBase<LinkedInPostSettings>
             _ => "PUBLIC"
         };
 
+        var authorUrn = _tokenStore.GetAuthorUrn(connectionSettings.ConnectionName);
+        if (string.IsNullOrWhiteSpace(authorUrn))
+        {
+            return ActionResult.Failed(
+                new InvalidOperationException("Author URN not found. Please re-authorize the connection."),
+                StepRunErrorCategory.ConfigurationError);
+        }
+
         try
         {
             var httpClient = _httpClientFactory.CreateClient();
 
             var postBody = new
             {
-                author = connectionSettings.AuthorUrn,
+                author = authorUrn,
                 commentary = postText,
                 visibility = visibility,
                 distribution = new
@@ -121,11 +125,11 @@ public class SendLinkedInPostAction : ActionBase<LinkedInPostSettings>
                 var errorBody = await response.Content.ReadAsStringAsync(cancellationToken);
                 _logger.LogError("LinkedIn API error {StatusCode}: {Body}", response.StatusCode, errorBody);
                 return ActionResult.Failed(
-                    new HttpRequestException($"LinkedIn API returned {response.StatusCode}."),
+                    new HttpRequestException($"LinkedIn API returned {response.StatusCode}: {errorBody}"),
                     StepRunErrorCategory.InvalidResponse);
             }
 
-            _logger.LogInformation("Successfully posted to LinkedIn for {AuthorUrn}", connectionSettings.AuthorUrn);
+            _logger.LogInformation("Successfully posted to LinkedIn for {AuthorUrn}", authorUrn);
             return Success();
         }
         catch (HttpRequestException ex)

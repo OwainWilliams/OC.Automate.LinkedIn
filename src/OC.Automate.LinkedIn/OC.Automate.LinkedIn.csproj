@@ -1,11 +1,11 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <PackageId>OC.Automate.LinkedIn</PackageId>
-    <Version>1.0.0-beta002</Version>
+    <Version>1.0.0-beta021</Version>
     <Title>OC Automate LinkedIn</Title>
     <Description>LinkedIn integration for Umbraco Automate - post content to LinkedIn as part of your automation workflows.</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -17,6 +17,8 @@
     <PackageTags>umbraco;automate;linkedin;social-media</PackageTags>
     <PackageReadmeFile>README_nuget.md</PackageReadmeFile>
     <PackageIcon>ocAutomateLinkin.png</PackageIcon>
+    <AddRazorSdkAsStaticAssets>true</AddRazorSdkAsStaticAssets>
+    <StaticWebAssetBasePath>/</StaticWebAssetBasePath>
   </PropertyGroup>
 
   <ItemGroup>

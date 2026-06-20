@@ -21,10 +21,19 @@ public class LinkedInPackageManifestReader : IPackageManifestReader
                 [
                     new
                     {
-                        name = "OC Automate LinkedIn Bundle",
-                        alias = "OC.Automate.LinkedIn.Bundle",
-                        type = "bundle",
-                        js = "/App_Plugins/OC.Automate.LinkedIn/oc-automate-linkedin.js?v=" + version
+                        name = "LinkedIn Authorize Button",
+                        alias = "OC.Automate.LinkedIn.AuthorizeButton",
+                        type = "propertyEditorUi",
+                        element = "/App_Plugins/OC.Automate.LinkedIn/oc-automate-linkedin.js",
+                        elementName = "linkedin-authorize-button",
+                        meta = new
+                        {
+                            label = "LinkedIn Authorize Button",
+                            icon = "icon-link",
+                            group = "common",
+                            propertyEditorSchemaAlias = "Umbraco.Plain.String",
+                            supportsReadOnly = true
+                        }
                     }
                 ]
             }

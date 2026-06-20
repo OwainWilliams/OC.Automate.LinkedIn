@@ -134,13 +134,13 @@ public class LinkedInTokenService
         var tokenResponse = await response.Content
             .ReadFromJsonAsync<LinkedInTokenResponse>(cancellationToken);
 
-        if (tokenResponse?.AccessToken is null || tokenResponse.RefreshToken is null)
+        if (tokenResponse?.AccessToken is null)
         {
-            throw new HttpRequestException("LinkedIn token exchange returned incomplete token data.");
+            throw new HttpRequestException("LinkedIn token exchange returned no access token.");
         }
 
         var expiresAt = DateTimeOffset.UtcNow.AddSeconds(tokenResponse.ExpiresIn);
-        _tokenStore.StoreTokens(connectionName, tokenResponse.AccessToken, tokenResponse.RefreshToken, expiresAt);
+        _tokenStore.StoreTokens(connectionName, tokenResponse.AccessToken, tokenResponse.RefreshToken ?? string.Empty, expiresAt);
 
         _logger.LogInformation("LinkedIn tokens stored for connection '{ConnectionName}'", connectionName);
 
