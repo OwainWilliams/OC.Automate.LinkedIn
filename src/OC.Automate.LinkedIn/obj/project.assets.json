@@ -7151,7 +7151,7 @@
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
-    "version": "1.0.0-beta0031",
+    "version": "1.0.0",
     "restore": {
       "projectUniqueName": "C:\\Users\\owain\\Dev\\OC.Automate.LinkedIn\\src\\OC.Automate.LinkedIn\\OC.Automate.LinkedIn.csproj",
       "projectName": "OC.Automate.LinkedIn",
