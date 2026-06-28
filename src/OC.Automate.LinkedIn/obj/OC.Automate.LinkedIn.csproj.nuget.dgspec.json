@@ -1,24 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Owain Williams\\Dev\\OC.Automate.LinkedIn\\src\\OC.Automate.LinkedIn\\OC.Automate.LinkedIn.csproj": {}
+    "C:\\Users\\owain\\Dev\\OC.Automate.LinkedIn\\src\\OC.Automate.LinkedIn\\OC.Automate.LinkedIn.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Owain Williams\\Dev\\OC.Automate.LinkedIn\\src\\OC.Automate.LinkedIn\\OC.Automate.LinkedIn.csproj": {
-      "version": "1.0.0-beta023",
+    "C:\\Users\\owain\\Dev\\OC.Automate.LinkedIn\\src\\OC.Automate.LinkedIn\\OC.Automate.LinkedIn.csproj": {
+      "version": "1.0.0-beta0030",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Owain Williams\\Dev\\OC.Automate.LinkedIn\\src\\OC.Automate.LinkedIn\\OC.Automate.LinkedIn.csproj",
+        "projectUniqueName": "C:\\Users\\owain\\Dev\\OC.Automate.LinkedIn\\src\\OC.Automate.LinkedIn\\OC.Automate.LinkedIn.csproj",
         "projectName": "OC.Automate.LinkedIn",
-        "projectPath": "C:\\Users\\Owain Williams\\Dev\\OC.Automate.LinkedIn\\src\\OC.Automate.LinkedIn\\OC.Automate.LinkedIn.csproj",
-        "packagesPath": "C:\\Users\\Owain Williams\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Owain Williams\\Dev\\OC.Automate.LinkedIn\\src\\OC.Automate.LinkedIn\\obj\\",
+        "projectPath": "C:\\Users\\owain\\Dev\\OC.Automate.LinkedIn\\src\\OC.Automate.LinkedIn\\OC.Automate.LinkedIn.csproj",
+        "packagesPath": "C:\\Users\\owain\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\owain\\Dev\\OC.Automate.LinkedIn\\src\\OC.Automate.LinkedIn\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Owain Williams\\Dev\\OC.Automate.LinkedIn\\NuGet.Config",
-          "C:\\Users\\Owain Williams\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\owain\\Dev\\OC.Automate.LinkedIn\\NuGet.Config",
+          "C:\\Users\\owain\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],

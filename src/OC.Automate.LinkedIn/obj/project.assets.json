@@ -7147,24 +7147,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Owain Williams\\.nuget\\packages\\": {},
+    "C:\\Users\\owain\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
-    "version": "1.0.0-beta023",
+    "version": "1.0.0-beta0030",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Owain Williams\\Dev\\OC.Automate.LinkedIn\\src\\OC.Automate.LinkedIn\\OC.Automate.LinkedIn.csproj",
+      "projectUniqueName": "C:\\Users\\owain\\Dev\\OC.Automate.LinkedIn\\src\\OC.Automate.LinkedIn\\OC.Automate.LinkedIn.csproj",
       "projectName": "OC.Automate.LinkedIn",
-      "projectPath": "C:\\Users\\Owain Williams\\Dev\\OC.Automate.LinkedIn\\src\\OC.Automate.LinkedIn\\OC.Automate.LinkedIn.csproj",
-      "packagesPath": "C:\\Users\\Owain Williams\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Owain Williams\\Dev\\OC.Automate.LinkedIn\\src\\OC.Automate.LinkedIn\\obj\\",
+      "projectPath": "C:\\Users\\owain\\Dev\\OC.Automate.LinkedIn\\src\\OC.Automate.LinkedIn\\OC.Automate.LinkedIn.csproj",
+      "packagesPath": "C:\\Users\\owain\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\owain\\Dev\\OC.Automate.LinkedIn\\src\\OC.Automate.LinkedIn\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Owain Williams\\Dev\\OC.Automate.LinkedIn\\NuGet.Config",
-        "C:\\Users\\Owain Williams\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\owain\\Dev\\OC.Automate.LinkedIn\\NuGet.Config",
+        "C:\\Users\\owain\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -7504,10 +7504,120 @@
   },
   "logs": [
     {
+      "code": "NU1902",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'MessagePack' 3.1.4 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-2f33-pr97-265q",
+      "libraryId": "MessagePack",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    },
+    {
+      "code": "NU1902",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'MessagePack' 3.1.4 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-2x83-8g95-xh59",
+      "libraryId": "MessagePack",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    },
+    {
+      "code": "NU1903",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'MessagePack' 3.1.4 has a known high severity vulnerability, https://github.com/advisories/GHSA-382j-8mxh-c7x2",
+      "libraryId": "MessagePack",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    },
+    {
+      "code": "NU1902",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'MessagePack' 3.1.4 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-cj9g-3mj2-g8vv",
+      "libraryId": "MessagePack",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    },
+    {
+      "code": "NU1902",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'MessagePack' 3.1.4 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-cxmj-83gh-fp49",
+      "libraryId": "MessagePack",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    },
+    {
       "code": "NU1903",
       "level": "Warning",
       "warningLevel": 1,
       "message": "Package 'MessagePack' 3.1.4 has a known high severity vulnerability, https://github.com/advisories/GHSA-hv8m-jj95-wg3x",
+      "libraryId": "MessagePack",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    },
+    {
+      "code": "NU1902",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'MessagePack' 3.1.4 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-q2h6-ghwm-5qm8",
+      "libraryId": "MessagePack",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    },
+    {
+      "code": "NU1902",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'MessagePack' 3.1.4 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-qhmf-xw27-6rqr",
+      "libraryId": "MessagePack",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    },
+    {
+      "code": "NU1902",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'MessagePack' 3.1.4 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-v72x-2h86-7f8m",
+      "libraryId": "MessagePack",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    },
+    {
+      "code": "NU1903",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'MessagePack' 3.1.4 has a known high severity vulnerability, https://github.com/advisories/GHSA-vh6j-jc39-fggf",
+      "libraryId": "MessagePack",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    },
+    {
+      "code": "NU1902",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'MessagePack' 3.1.4 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-w567-gjr2-hm5j",
+      "libraryId": "MessagePack",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    },
+    {
+      "code": "NU1902",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'MessagePack' 3.1.4 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-wfr3-xj75-pfwh",
       "libraryId": "MessagePack",
       "targetGraphs": [
         "net10.0"

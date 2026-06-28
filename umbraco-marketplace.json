@@ -6,27 +6,23 @@
   "AuthorDetails": {
     "Name": "Owain Williams",
     "Url": "https://owain.codes",
-    "ImageUrl": ""
+    "ImageUrl": "https://github.com/OwainWilliams.png",
+    "Description": "Owain Williams is a Senior Developer at Initials Labs, a mutli-awarded Umbraco MVP"
   },
-  "LicenseTypes": [
-    "MIT"
-  ],
-  "NuGetPackageId": "OC.Automate.LinkedIn",
-  "Tags": [
-    "automate",
-    "linkedin",
-    "social media"
-  ],
+  "ImageUrl": "ocAutomateLinkedIn.png",
+  "LicenseTypes": [ "Free" ],
+  "IssueTrackerUrl": "https://github.com/OwainWilliams/OC.Automate.LinkedIn/issues",
+  "PackageType": "Package",
+  "Tags": [ "automate", "linkedin", "social media" ],
   "RelatedPackages": [
     {
-      "Name": "OC.Automate.Bluesky",
-      "PackageId": "OC.Automate.Bluesky"
+      "PackageId": "OC.Automate.Bluesky",
+      "Description": "Bluesky integration for Umbraco Automate. Post content to Bluesky as part of your automation workflows."
     },
     {
-      "Name": "OC.Automate.Mastodon",
-      "PackageId": "OC.Automate.Mastodon"
+      "PackageId": "OC.Automate.Mastodon",
+      "Description": "Mastodon integration for Umbraco Automate. Post content to Mastodon as part of your automation workflows."
     }
   ],
-  "OpenCollective": "",
-  "OpenForContributions": true
+  "LookingForContributors": true
 }

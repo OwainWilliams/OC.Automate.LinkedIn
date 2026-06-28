@@ -5,7 +5,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <PackageId>OC.Automate.LinkedIn</PackageId>
-    <Version>1.0.0-beta023</Version>
+    <Version>1.0.0-beta0030</Version>
     <Title>OC Automate LinkedIn</Title>
     <Description>LinkedIn integration for Umbraco Automate - post content to LinkedIn as part of your automation workflows.</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -33,7 +33,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="ocAutomateLinkin.png">
+    <None Update="ocAutomateLinkedIn.png">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
