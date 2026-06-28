@@ -5,7 +5,7 @@
   },
   "projects": {
     "C:\\Users\\owain\\Dev\\OC.Automate.LinkedIn\\src\\OC.Automate.LinkedIn\\OC.Automate.LinkedIn.csproj": {
-      "version": "1.0.0-beta0030",
+      "version": "1.0.0-beta0031",
       "restore": {
         "projectUniqueName": "C:\\Users\\owain\\Dev\\OC.Automate.LinkedIn\\src\\OC.Automate.LinkedIn\\OC.Automate.LinkedIn.csproj",
         "projectName": "OC.Automate.LinkedIn",
@@ -55,11 +55,11 @@
           "dependencies": {
             "Umbraco.Automate.Core": {
               "target": "Package",
-              "version": "[17.0.0-beta, )"
+              "version": "[17.0.0-beta, 19.0.0)"
             },
             "Umbraco.Cms.Core": {
               "target": "Package",
-              "version": "[17.4.0, 18.0.0)"
+              "version": "[17.4.0, 19.0.0)"
             }
           },
           "imports": [
