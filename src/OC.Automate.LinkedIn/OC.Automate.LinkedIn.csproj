@@ -14,7 +14,7 @@
     <PackageProjectUrl>https://github.com/OwainWilliams/OC.Automate.LinkedIn</PackageProjectUrl>
     <RepositoryUrl>https://github.com/OwainWilliams/OC.Automate.LinkedIn</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageTags>umbraco;automate;linkedin;social-media</PackageTags>
+    <PackageTags>umbraco;automate;linkedin;social-media;umbraco-marketplace</PackageTags>
     <PackageReadmeFile>README_nuget.md</PackageReadmeFile>
     <PackageIcon>ocAutomateLinkedIn.png</PackageIcon>
     <AddRazorSdkAsStaticAssets>true</AddRazorSdkAsStaticAssets>
