@@ -3,7 +3,9 @@ using Umbraco.Automate.Core.Connections;
 
 namespace OC.Automate.LinkedIn;
 
-[ConnectionType("linkedin", "LinkedIn")]
+[ConnectionType("linkedin", "LinkedIn",
+    Description = "Connect to LinkedIn",
+    Icon = "icon-plugin")]
 public class LinkedInConnectionType : ConnectionTypeBase<LinkedInConnectionSettings>
 {
     private readonly LinkedInTokenService _tokenService;

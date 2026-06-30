@@ -6,7 +6,11 @@ using Umbraco.Automate.Core.Actions;
 
 namespace OC.Automate.LinkedIn;
 
-[Action("linkedInSendPost", "Send LinkedIn Post", ConnectionTypeAlias = "linkedin")]
+[Action("linkedInSendPost", "Send LinkedIn Post",
+    Description = "Sends a LinkedIn Post",
+    Group = "Social Networks",
+    Icon = "icon-paper-plane",
+    ConnectionTypeAlias = "linkedin")]
 public class SendLinkedInPostAction : ActionBase<LinkedInPostSettings>
 {
     private readonly IHttpClientFactory _httpClientFactory;
