@@ -7,6 +7,8 @@ public class LinkedInPostSettings
     [Field(
         Label = "Content",
         Description = "The post content (max 3000 chars). Supports ${binding} syntax for dynamic values.",
+        EditorUiAlias = "Umb.PropertyEditorUi.TextArea",
+        EditorConfig = """[{ "alias": "rows", "value": 4 }]""",
         SupportsBindings = true)]
     public string Content { get; set; } = string.Empty;
 
@@ -19,7 +21,9 @@ public class LinkedInPostSettings
 
     [Field(
         Label = "Visibility",
-        Description = "Post visibility: PUBLIC or CONNECTIONS. Defaults to PUBLIC.",
-        SortOrder = 2)]
+        Description = "Post visibility.",
+        SortOrder = 2,
+        EditorUiAlias = "Umb.PropertyEditorUi.Dropdown",
+        EditorConfig = """[{ "alias": "items", "value": ["PUBLIC", "CONNECTIONS"] }]""")]
     public string Visibility { get; set; } = "PUBLIC";
 }
