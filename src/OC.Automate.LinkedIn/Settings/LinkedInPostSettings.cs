@@ -21,7 +21,7 @@ public class LinkedInPostSettings
 
     [Field(
         Label = "Visibility",
-        Description = "Post visibility: PUBLIC or CONNECTIONS. Defaults to PUBLIC.",
+        Description = "Post visibility.",
         SortOrder = 2,
         EditorUiAlias = "Umb.PropertyEditorUi.Dropdown",
         EditorConfig = """[{ "alias": "items", "value": ["PUBLIC", "CONNECTIONS"] }]""")]
